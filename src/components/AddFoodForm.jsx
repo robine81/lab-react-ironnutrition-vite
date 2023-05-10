@@ -38,3 +38,26 @@ function AddFoodForm({ foodItems, setFoodItems }) {
         name="image"
         onChange={handleChange}
       />
+
+      <label>Calories</label>
+      <Input
+        value={newFood.calories}
+        type="number"
+        name="calories"
+        onChange={handleChange}
+      />
+
+      <label>Servings</label>
+      <Input
+        value={newFood.servings}
+        type="number"
+        name="servings"
+        onChange={handleChange}
+      />
+
+      <button type="submit">Create</button>
+    </form>
+  );
+}
+
+export default AddFoodForm;

@@ -1,34 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React, { useState } from "react";
+import { Card, Row, Col, Divider, Input, Button } from "antd";
+import foods from "./foods.json";
+import FoodBox from "./components/FoodBox";
+import AddFoodForm from "./components/AddFoodForm";
+import Search from "./components/Search";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [foodItems, setFoodItems] = useState(foods);
+  console.log(foodItems);
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <AddFoodForm foodItems={foodItems} setFoodItems={setFoodItems} />
+
+      <Button> Hide Form / Add New Food </Button>
+
+      <Search foodItems={foodItems} setFoodItems={setFoodItems} />
+
+      <Divider>Food List</Divider>
+
+      <Row style={{ width: "100%", justifyContent: "center" }}>
+        {foodItems.map((food) => (
+          <FoodBox key={food.name} food={food} />
+        ))}
+      </Row>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
